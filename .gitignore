@@ -1,0 +1,104 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+logs
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Environment variables
+.env
+.env.test
+.env.development
+.env.production
+.env.local
+
+# Build outputs
+dist/
+build/
+coverage/
+lib/
+out/
+tmp/
+temp/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional npm cache
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Optional REPL history
+.node_repl_history
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.tgz
+*.orig
+*.swp
+*.bak
+*.tmp
+
+# Next.js / Nuxt.js / Remix
+.next/
+.nuxt/
+out/
+.cache/
+
+# Svelte / Vite / Astro / other builds
+.svelte-kit/
+.vite/
+.astro/
+
+# Firebase / Serverless / Amplify
+.firebase/
+.serverless/
+.amplify/
+
+# Docker
+docker-compose.override.yml
+docker-compose.dev.yml
+
+# Optional local scripts
+scripts/loc
