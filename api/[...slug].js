@@ -1,9 +1,7 @@
-// NOTE: kept for backward compatibility. The recommended handler is
-// api/[...slug].js which captures /api/* routes. This file responds to
-// requests to /api exactly and delegates to the Express app.
 const app = require('../app')
 const connect = require('../db')
 
+// Catch-all Vercel serverless handler for any /api/* path.
 let isConnected = false
 
 module.exports = async (req, res) => {
@@ -12,6 +10,7 @@ module.exports = async (req, res) => {
       await connect()
       isConnected = true
     }
+
     return app(req, res)
   } catch (err) {
     console.error('Database connection error', err)
