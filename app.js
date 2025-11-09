@@ -19,4 +19,9 @@ app.use('/auth', authRoutes)
 app.use('/api/posts', postRoutes)
 app.use('/posts', postRoutes)
 
+// Root health check
+app.get('/', (req, res) => {
+	res.json({ ok: true, message: 'Backend API running' })
+})
+
 module.exports = app

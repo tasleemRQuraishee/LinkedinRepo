@@ -5,6 +5,30 @@ const User = require('../models/User')
 
 const router = express.Router()
 
+// GET /api/auth - health/auth check
+router.get('/', async (req, res) => {
+  try {
+    const auth = req.header('Authorization')
+    if (!auth) return res.status(200).json({ authenticated: false })
+
+    const parts = auth.split(' ')
+    if (parts.length !== 2) return res.status(401).json({ error: 'Invalid token format' })
+
+    const token = parts[1]
+    try {
+      const payload = jwt.verify(token, process.env.JWT_SECRET || 'dev-secret')
+      const user = await User.findById(payload.id).select('-password')
+      if (!user) return res.status(401).json({ authenticated: false })
+      return res.json({ authenticated: true, user })
+    } catch (err) {
+      return res.status(401).json({ authenticated: false })
+    }
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
+
 // POST /api/auth/register
 router.post('/register', async (req, res) => {
   try {
@@ -48,3 +72,4 @@ router.post('/login', async (req, res) => {
 })
 
 module.exports = router
+
