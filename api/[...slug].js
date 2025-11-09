@@ -1,8 +1,10 @@
+const serverless = require('serverless-http')
 const app = require('../app')
 const connect = require('../db')
 
-// Catch-all Vercel serverless handler for any /api/* path.
+// Wrap Express with serverless-http and ensure DB connection is cached
 let isConnected = false
+const handler = serverless(app)
 
 module.exports = async (req, res) => {
   try {
@@ -10,8 +12,7 @@ module.exports = async (req, res) => {
       await connect()
       isConnected = true
     }
-
-    return app(req, res)
+    return handler(req, res)
   } catch (err) {
     console.error('Database connection error', err)
     res.statusCode = 500

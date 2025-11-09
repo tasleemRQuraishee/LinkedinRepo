@@ -1,10 +1,10 @@
-// NOTE: kept for backward compatibility. The recommended handler is
-// api/[...slug].js which captures /api/* routes. This file responds to
-// requests to /api exactly and delegates to the Express app.
+// Keep a small compatibility handler for requests to /api (exact).
+const serverless = require('serverless-http')
 const app = require('../app')
 const connect = require('../db')
 
 let isConnected = false
+const handler = serverless(app)
 
 module.exports = async (req, res) => {
   try {
@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
       await connect()
       isConnected = true
     }
-    return app(req, res)
+    return handler(req, res)
   } catch (err) {
     console.error('Database connection error', err)
     res.statusCode = 500
